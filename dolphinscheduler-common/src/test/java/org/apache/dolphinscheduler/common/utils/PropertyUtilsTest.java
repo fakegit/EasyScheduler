@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package org.apache.dolphinscheduler.common.utils;
 
 import org.apache.dolphinscheduler.common.Constants;
@@ -26,6 +27,5 @@ public class PropertyUtilsTest {
     @Test
     public void getString() {
         assertNotNull(PropertyUtils.getString(Constants.FS_DEFAULTFS));
-        assertNotNull(PropertyUtils.getInt("spring.redis.port"));
     }
 }

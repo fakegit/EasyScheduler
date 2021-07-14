@@ -18,6 +18,9 @@
 import _ from 'lodash'
 
 export default {
+  setProjectId (state, payload) {
+    state.projectId = payload
+  },
   setProjectName (state, payload) {
     state.projectName = payload
   },
@@ -74,6 +77,9 @@ export default {
    */
   setDesc (state, payload) {
     state.description = payload
+  },
+  setReleaseState (state, payload) {
+    state.releaseState = payload
   },
   /**
    * Whether to update the process definition
@@ -140,9 +146,9 @@ export default {
       y: parseInt(dom.css('top'), 10)
     })
   },
-  addConnects(state, payload) {
+  addConnects (state, payload) {
     state.connects = _.map(state.connects, v => {
-      if(v.endPointSourceId===payload.sourceId && v.endPointTargetId===payload.targetId) {
+      if (v.endPointSourceId === payload.sourceId && v.endPointTargetId === payload.targetId) {
         v.label = payload.labelName
       }
       return v
@@ -159,5 +165,16 @@ export default {
     } else {
       state.cacheTasks[payload.id] = payload
     }
+  },
+  resetLocalParam (state, payload) {
+    const tasks = state.tasks
+    tasks.forEach((task, index) => {
+      payload.forEach(p => {
+        if (p.id === task.id) {
+          tasks[index].params.localParams = p.localParam
+        }
+      })
+    })
+    state.tasks = tasks
   }
 }

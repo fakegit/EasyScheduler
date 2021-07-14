@@ -31,6 +31,18 @@ export default {
     })
   },
   /**
+   * Get project by id
+   */
+  getProjectById ({ state }, payload) {
+    return new Promise((resolve, reject) => {
+      io.get('projects/query-by-id', payload, res => {
+        resolve(res.data)
+      }).catch(e => {
+        reject(e)
+      })
+    })
+  },
+  /**
    * Create project
    */
   createProjects ({ state }, payload) {
@@ -69,7 +81,7 @@ export default {
   /**
    * Task status statistics
    */
-  getTaskCtatusCount ({ state }, payload) {
+  getTaskStatusCount ({ state }, payload) {
     return new Promise((resolve, reject) => {
       io.get('projects/analysis/task-state-count', payload, res => {
         resolve(res)

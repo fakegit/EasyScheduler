@@ -33,6 +33,7 @@ public enum DbType {
      * 5 oracle
      * 6 sqlserver
      * 7 db2
+     * 8 presto
      */
     MYSQL(0, "mysql"),
     POSTGRESQL(1, "postgresql"),
@@ -41,7 +42,8 @@ public enum DbType {
     CLICKHOUSE(4, "clickhouse"),
     ORACLE(5, "oracle"),
     SQLSERVER(6, "sqlserver"),
-    DB2(7, "db2");
+    DB2(7, "db2"),
+    PRESTO(8, "presto");
 
     DbType(int code, String descp) {
         this.code = code;
@@ -73,6 +75,6 @@ public enum DbType {
         if(DB_TYPE_MAP.containsKey(type)){
             return DB_TYPE_MAP.get(type);
         }
-        throw new IllegalArgumentException("invalid type : " + type);
+        return null;
     }
 }
